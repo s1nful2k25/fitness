@@ -3,6 +3,7 @@ import { exercises } from "@/db/schema";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
+export const dynamic = "force-dynamic";
 export default async function ExercisesPage() {
   const allExercises = await db.select().from(exercises).orderBy(exercises.name);
 
