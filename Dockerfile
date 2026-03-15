@@ -1,4 +1,3 @@
-# 1. HIER GEÄNDERT: Von node:20-alpine auf node:20
 FROM node:20 AS builder
 WORKDIR /app
 
@@ -6,11 +5,17 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-# 2. HIER GEÄNDERT: Wir nehmen den Log-Befehl wieder raus, der stört jetzt nur
+
+# --- DAS IST NEU: ---
+# Wir erstellen den Ordner und setzen den Pfad schon WÄHREND des Builds, 
+# damit das Prerendering von Next.js nicht abstürzt!
+RUN mkdir -p /app/data
+ENV DATABASE_PATH="/app/data/training.db"
+# --------------------
+
 ENV NODE_OPTIONS="--max-old-space-size=1024"
 RUN npm run build
 
-# 3. HIER GEÄNDERT: Von node:20-alpine auf node:20
 FROM node:20 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
