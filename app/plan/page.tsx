@@ -2,6 +2,7 @@ import { getPhasesWithDays } from "@/lib/queries";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
+export const dynamic = "force-dynamic";
 export default async function PlanPage() {
   const phases = await getPhasesWithDays();
 
