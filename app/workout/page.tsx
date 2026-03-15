@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { WorkoutTracker } from "@/components/workout/WorkoutTracker";
 
+export const dynamic = "force-dynamic";
 export default async function WorkoutPage() {
   const activePhase = await getActivePhase();
   const nextDay = await getNextWorkoutDay();
