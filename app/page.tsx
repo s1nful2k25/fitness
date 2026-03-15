@@ -5,6 +5,7 @@ import { getNextWorkoutDay, getWorkoutHistory, getBodyTrackingHistory, getActive
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
+export const dynamic = "force-dynamic";
 // A simple utility to format dates
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("de-DE", { day: '2-digit', month: '2-digit', year: 'numeric' });
