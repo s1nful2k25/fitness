@@ -6,7 +6,7 @@ RUN npm ci
 
 COPY . .
 ENV NODE_OPTIONS="--max-old-space-size=1024"
-RUN npm run build
+RUN npm run build > build-log.txt 2>&1 || (cat build-log.txt && exit 1)
 
 FROM node:20-alpine AS runner
 WORKDIR /app
