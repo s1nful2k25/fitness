@@ -1,14 +1,17 @@
-FROM node:20-alpine AS builder
+# 1. HIER GEÄNDERT: Von node:20-alpine auf node:20
+FROM node:20 AS builder
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm ci
 
 COPY . .
+# 2. HIER GEÄNDERT: Wir nehmen den Log-Befehl wieder raus, der stört jetzt nur
 ENV NODE_OPTIONS="--max-old-space-size=1024"
-RUN npm run build > build-log.txt 2>&1 || (cat build-log.txt && exit 1)
+RUN npm run build
 
-FROM node:20-alpine AS runner
+# 3. HIER GEÄNDERT: Von node:20-alpine auf node:20
+FROM node:20 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
