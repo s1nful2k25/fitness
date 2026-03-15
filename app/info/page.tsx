@@ -1,5 +1,5 @@
 import { Card, CardHeader } from "@/components/ui/Card";
-
+export const dynamic = "force-dynamic";
 export default function InfoPage() {
   return (
     <div className="flex flex-col gap-12">
